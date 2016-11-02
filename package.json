@@ -1,0 +1,23 @@
+{
+  "name": "next-engine",
+  "version": "1.0.0",
+  "description": "Nextengine API for Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Leko/node-nextengine.git"
+  },
+  "keywords": [
+    "api",
+    "nextengine"
+  ],
+  "author": "Leko <leko.noor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leko/node-nextengine/issues"
+  },
+  "homepage": "https://github.com/Leko/node-nextengine#readme"
+}
