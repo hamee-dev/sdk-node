@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Leko/node-nextengine/issues"
   },
-  "homepage": "https://github.com/Leko/node-nextengine#readme"
+  "homepage": "https://github.com/Leko/node-nextengine#readme",
+  "dependencies": {
+    "node-fetch": "^1.6.3"
+  }
 }
