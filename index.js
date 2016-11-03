@@ -11,7 +11,7 @@ class Nextengine {
   /**
    *
    */
-  constructor(opts) {
+  constructor (opts) {
     this.clientId = opts.clientId
     this.clientSecret = opts.clientSecret
     this.redirectUri = opts.redirectUri
@@ -22,21 +22,21 @@ class Nextengine {
   /**
    *
    */
-  request(path, params) {
+  request (path, params) {
     return this.getConnection().request('POST', path, params)
   }
 
   /**
    *
    */
-  getConnection() {
+  getConnection () {
     return new Connection(this.accessToken, this.refreshToken)
   }
 
   /**
    *
    */
-  query(pathOrEntity) {
+  query (pathOrEntity) {
     const query = new Query(this.getConnection(), pathOrEntity)
 
     return query
@@ -45,42 +45,42 @@ class Nextengine {
   /**
    *
    */
-  create(pathOrEntity, params) {
+  create (pathOrEntity, params) {
     this.query(pathOrEntity).request(params)
   }
 
   /**
    *
    */
-  update(pathOrEntity, params) {
+  update (pathOrEntity, params) {
     this.query(pathOrEntity).request(params)
   }
 
   /**
    *
    */
-  upload() {
+  upload () {
 
   }
 
   /**
    *
    */
-  waitFor() {
+  waitFor () {
 
   }
 
   /**
    *
    */
-  uploadAndWaitFor() {
+  uploadAndWaitFor () {
 
   }
 
   /**
    *
    */
-  authorize(uid, state) {
+  authorize (uid, state) {
     return this.request('/api_neauth', { uid: uid, state: state })
   }
 
@@ -88,7 +88,7 @@ class Nextengine {
    * http://api.next-e.jp/param_uid_state.php
    *
    */
-  getAuthorizeURL() {
+  getAuthorizeURL () {
     const params = {
       client_id: this.clientId,
       client_secret: this.clientSecret
