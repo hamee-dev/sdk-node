@@ -20,10 +20,10 @@ please read [API Document](http://api.next-e.jp).
 const Nextengine = require('next-engine')
 
 const client = new Nextengine({
-  clientId: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  accessToken: credential.access_token,
-  refreshToken: credential.refresh_token,
+  clientId: 'XXXXXXXXXX',
+  clientSecret: 'XXXXXXXXXX',
+  accessToken: 'XXXXXXXXXX',
+  refreshToken: 'XXXXXXXXXX'
 })
 
 client.request('/api_v1_receiveorder_base/count', {
