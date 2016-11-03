@@ -1,0 +1,15 @@
+machine:
+  node:
+    version: 6.1.0
+
+dependencies:
+  override:
+    - npm install
+
+test:
+  override:
+    - npm outdate
+    - npm run lint
+    - npm run test
+  post:
+    - bash <(curl -s https://codecov.io/bash)
