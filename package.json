@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard --verbose index.js lib/**/*.js test/*.js",
-    "test": "mocha"
+    "test": "$(npm bin)/istanbul cover _mocha -- -R spec"
   },
   "repository": {
     "type": "git",
