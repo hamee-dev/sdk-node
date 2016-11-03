@@ -4,6 +4,7 @@
   "description": "Nextengine API for Nodejs",
   "main": "index.js",
   "scripts": {
+    "lint": "standard --verbose index.js lib/**/*.js test/*.js",
     "test": "mocha"
   },
   "repository": {
