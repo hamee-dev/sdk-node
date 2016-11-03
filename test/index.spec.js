@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 
 describe('Nextengine', () => {
   describe('request', () => {

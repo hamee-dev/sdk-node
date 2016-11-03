@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 
 describe('util', () => {
   describe('digg', () => {

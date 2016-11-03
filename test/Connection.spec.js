@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 
 describe('Connection', () => {
   describe('get HOST', () => {

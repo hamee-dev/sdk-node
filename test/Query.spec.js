@@ -1,3 +1,4 @@
+/* eslint-env mocha */
 
 describe('Query', () => {
   describe('get DEFAULT_LIMIT', () => {
