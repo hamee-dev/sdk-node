@@ -33,6 +33,12 @@ client.request('/api_v1_receiveorder_base/count', {
   .catch(e => console.error('catch:', e))
 ```
 
+### Note
+We strongly recommended that **you don't use `request` method**.  
+Because it depends strongly on v1 specification.  
+Utility methods (`query -> get|count|getInBatches`, `create`, `update`, `upload`, `waitFor` and `uploadAndWaitFor`) are To reduce the dependency of v1.  
+So please use utility methods as far as possible.
+
 ## Query utility
 
 ```js
