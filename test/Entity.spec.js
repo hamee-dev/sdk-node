@@ -37,7 +37,7 @@ describe('Entity', () => {
       for (let file of files) {
         const entityName = path.basename(file, '.js')
         if (entityName === 'Entity' || entityName === 'index') {
-          continue;
+          continue
         }
 
         const entity = require(file)
