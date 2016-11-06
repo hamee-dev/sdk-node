@@ -41,9 +41,9 @@ class Nextengine {
 
   /**
    * Return Connection instance
-   * 
+   *
    * You can override this method to use custom connection
-   * 
+   *
    * @return Connection
    */
   getConnection () {
