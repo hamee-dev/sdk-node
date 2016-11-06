@@ -14,7 +14,7 @@ describe('Query', () => {
   describe('count', () => {
     it('must return Promise', () => {
       const conn = new Connection()
-      const q = new Query(conn)
+      const q = new Query(conn, 'xxx')
       assert.ok(q.count() instanceof Promise)
     })
   })
@@ -22,7 +22,7 @@ describe('Query', () => {
   describe('get', () => {
     it('must return Promise', () => {
       const conn = new Connection()
-      const q = new Query(conn)
+      const q = new Query(conn, 'xxx')
       assert.ok(q.get() instanceof Promise)
     })
   })
@@ -30,7 +30,7 @@ describe('Query', () => {
   describe('getInBatches', () => {
     it('must return Promise', () => {
       const conn = new Connection()
-      const q = new Query(conn)
+      const q = new Query(conn, 'xxx')
       assert.ok(q.getInBatches() instanceof Promise)
     })
   })
@@ -76,7 +76,7 @@ describe('Query', () => {
   describe('fetch', () => {
     it('must return Promise', () => {
       const conn = new Connection()
-      const q = new Query(conn)
+      const q = new Query(conn, 'xxx')
       assert.ok(q.fetch([]) instanceof Promise)
     })
   })
@@ -84,7 +84,7 @@ describe('Query', () => {
   describe('request', () => {
     it('must return Promise', () => {
       const conn = new Connection()
-      const q = new Query(conn)
+      const q = new Query(conn, 'xxx')
       assert.ok(q.request({}, '') instanceof Promise)
     })
   })
