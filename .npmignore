@@ -1,0 +1,5 @@
+test
+bin
+coverage
+.editorconfig
+circle.yml

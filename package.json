@@ -1,0 +1,38 @@
+{
+  "name": "next-engine",
+  "version": "1.0.0",
+  "description": "Nextengine API for Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard --verbose index.js Entity/*.js lib/**/*.js test/*.js",
+    "test": "$(npm bin)/istanbul cover _mocha -- -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Leko/node-nextengine.git"
+  },
+  "keywords": [
+    "api",
+    "nextengine"
+  ],
+  "author": "Leko <leko.noor@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leko/node-nextengine/issues"
+  },
+  "homepage": "https://github.com/Leko/node-nextengine#readme",
+  "dependencies": {
+    "node-fetch": "^1.6.3",
+    "object-path": "^0.11.2"
+  },
+  "devDependencies": {
+    "csv-stringify": "^1.0.4",
+    "dotenv": "^2.0.0",
+    "es6-promisify": "^5.0.0",
+    "glob": "^7.1.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "standard": "^8.5.0"
+  }
+}

@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const readline = require('readline')
+const qs = require('querystring')
+const Nextengine = require('../')
+
+require('dotenv').load()
+
+const client = new Nextengine({
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET
+})
+
+console.log('Please open this url:')
+console.log('\t' + client.getAuthorizeURL() + '\n')
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+rl.question('Then enter callbacked url: ', (url) => {
+  const q = qs.parse(url.substr(url.indexOf('?') + 1))
+
+  client.authorize(q.uid, q.state)
+    .then(res => fs.writeFileSync('./.credential.json', JSON.stringify(res, null, 2)))
+    .then(() => console.log('Done'))
+    .catch(e => console.error('Authorize failed.\n' + e))
+
+  rl.close()
+})
