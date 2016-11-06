@@ -14,6 +14,10 @@ npm i -S next-engine
 
 please read [API Document](http://api.next-e.jp).
 
+## Authorize
+
+See [passport-nextengine](https://github.com/Leko/passport-nextengine) source and [demo application](https://github.com/Leko/passport-nextengine/tree/master/examples)
+
 ## Basic request
 
 ```js
