@@ -1,6 +1,7 @@
 const qs = require('querystring')
 const Connection = require('./lib/Connection')
 const Query = require('./lib/Query')
+const { UploadQueue } = require('./Entity')
 
 /**
  * Nextengine API for Nodejs
@@ -69,7 +70,7 @@ class Nextengine {
    * @return Promise
    */
   create (pathOrEntity, params) {
-    this.query(pathOrEntity).request(params)
+    return this.query(pathOrEntity).request(params, 'create')
   }
 
   /**
@@ -80,7 +81,7 @@ class Nextengine {
    * @return Promise
    */
   update (pathOrEntity, params) {
-    this.query(pathOrEntity).request(params)
+    return this.query(pathOrEntity).request(params, 'update')
   }
 
   /**
@@ -91,29 +92,51 @@ class Nextengine {
    * @return Promise
    */
   upload (pathOrEntity, params) {
-
+    return this.query(pathOrEntity).request(params, 'upload')
   }
 
   /**
    * Poll upload queue until specified status
    *
-   * @param int queueId                       ID of upload queue
-   * @param int [state=UploadQueue.COMPLETED] ID of upload status
+   * @param int   queueId                                                ID of upload queue
+   * @param int[] [statuses=[UploadQueue.COMPLETED, UploadQueue.FAILED]] ID of upload status
+   * @param int   [interval=5000]                                        Interval of polling
    * @return Promise
    */
-  waitFor (queueId, state) {
-    state = state || UploadQueue.COMPLETED
+  waitFor (queueId, statuses, interval) {
+    statuses = statuses || [UploadQueue.COMPLETED, UploadQueue]
+    interval = interval || 5000
+
+    return this.query(UploadQueue)
+      .where('que_id', '=', queueId)
+      .get(['que_status_id'])
+      .then(res => {
+        if (statuses.indexOf(res.que_status_id) >= 0) {
+          return Promise.resolve()
+        } else {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              this.waitFor(queueId, statuses, interval)
+                .then(resolve)
+                .catch(reject)
+            }, interval)
+          })
+        }
+      })
   }
 
   /**
    * utility of upload + waitFor
    *
-   * @param string|Entity pathOrEntity        ex. 'receiveorder_base' or ReceiveOrder
-   * @param int [state=UploadQueue.COMPLETED] ID of upload status
+   * @see upload
+   * @see waitFor
+   * @param string|Entity pathOrEntity
+   * @param int[] [statuses] ID of upload status
    * @return Promise
    */
-  uploadAndWaitFor (pathOrEntity, params, state) {
-    state = state || UploadQueue.COMPLETED
+  uploadAndWaitFor (pathOrEntity, params, statuses) {
+    return this.upload(pathOrEntity, params)
+      .then(res => this.waitFor(res.que_id, statuses))
   }
 
   /**
