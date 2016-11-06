@@ -1,6 +1,13 @@
 const Entity = require('./Entity')
 
 class ReceiveOrderUploadPattern extends Entity {
-  static get getAsInfo () {}
-  static get path () {}
+  static get getAsInfo () {
+    return true
+  }
+
+  static get path () {
+    return '/api_v1_receiveorder_uploadpattern'
+  }
 }
+
+module.exports = ReceiveOrderUploadPattern
