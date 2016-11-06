@@ -9,6 +9,14 @@ const { UploadQueue } = require('./Entity')
  * @see http://api.next-e.jp
  */
 class Nextengine {
+  get accessToken () {
+    return this.connection.accessToken
+  }
+
+  get refreshToken () {
+    return this.connection.refreshToken
+  }
+
   /**
    * Constructor
    *
@@ -23,8 +31,7 @@ class Nextengine {
     this.clientId = opts.clientId
     this.clientSecret = opts.clientSecret
     this.redirectUri = opts.redirectUri
-    this.accessToken = opts.accessToken
-    this.refreshToken = opts.refreshToken
+    this.connection = this.getConnection(opts.accessToken, opts.refreshToken)
   }
 
   /**
@@ -36,7 +43,7 @@ class Nextengine {
    * @return Promise
    */
   request (path, params) {
-    return this.getConnection().request('POST', path, params)
+    return this.connection.request('POST', path, params)
   }
 
   /**
@@ -46,8 +53,8 @@ class Nextengine {
    *
    * @return Connection
    */
-  getConnection () {
-    return new Connection(this.accessToken, this.refreshToken)
+  getConnection (accessToken, refreshToken) {
+    return new Connection(accessToken, refreshToken)
   }
 
   /**
@@ -57,7 +64,7 @@ class Nextengine {
    * @return Query
    */
   query (pathOrEntity) {
-    const query = new Query(this.getConnection(), pathOrEntity)
+    const query = new Query(this.connection, pathOrEntity)
 
     return query
   }
