@@ -13,10 +13,4 @@ describe('Path', () => {
       assert.equal(Path.resolve(ReceiveOrder, 'search'), '/api_v1_receiveorder_base/search')
     })
   })
-
-  describe('findPath', () => {
-    it('must return string', () => {
-      assert.equal(typeof Path.findPath(), 'string')
-    })
-  })
 })
