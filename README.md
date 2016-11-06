@@ -135,7 +135,7 @@ const zlib = require('zlib')
 const promisify = require('es6-promisify')
 const stringify = promisify(require('csv-stringify'))
 const deflate = promisify(zlib.deflate)
-const { SUCCESS, FAILED }
+const { UploadQueue } = require('next-engine/Entity')
 
 input = [
   ['syohin_code', 'jan_code'],
@@ -144,7 +144,7 @@ input = [
 stringify(input)
   .then(csv => deflate(csv))
   .then(gz => client.upload({ data_type: 'gz', data: gz }))
-  .then(queueId => client.waitFor(queueId, [SUCCESS, FAILED]))
+  .then(queueId => client.waitFor(queueId, [UploadQueue.COMPLETED, UploadQueue.FAILED]))
   .then(() => console.log('Imported!'))
 
 // Or
@@ -154,7 +154,7 @@ input = [
 ]
 stringify(input)
   .then(csv => deflate(csv))
-  .then(gz => client.uploadAndWaitFor({ data_type: 'gz', data: gz }, [SUCCESS, FAILED]))
+  .then(gz => client.uploadAndWaitFor({ data_type: 'gz', data: gz }))
   .then(() => console.log('Imported!'))
 ```
 
