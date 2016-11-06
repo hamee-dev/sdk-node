@@ -5,11 +5,18 @@ const Query = require('./lib/Query')
 /**
  * Nextengine API for Nodejs
  *
- * 仕様は http://api.next-e.jp を参照
+ * @see http://api.next-e.jp
  */
 class Nextengine {
   /**
+   * Constructor
    *
+   * @param object opts
+   *   @param string opts.clientId       client id
+   *   @param string opts.clientSecret   client secret
+   *   @param string [opts.redirectUri]  (optional)redirect uri
+   *   @param string [opts.accessToken]  (optional)access token
+   *   @param string [opts.refreshToken] (optional)refresh token
    */
   constructor (opts) {
     this.clientId = opts.clientId
@@ -20,21 +27,33 @@ class Nextengine {
   }
 
   /**
+   * Send request to Nextengine API
    *
+   * @see http://api.next-e.jp/request_url.php
+   * @param string path   path of api
+   * @param object params request body
+   * @return Promise
    */
   request (path, params) {
     return this.getConnection().request('POST', path, params)
   }
 
   /**
-   *
+   * Return Connection instance
+   * 
+   * You can override this method to use custom connection
+   * 
+   * @return Connection
    */
   getConnection () {
     return new Connection(this.accessToken, this.refreshToken)
   }
 
   /**
+   * Start query building
    *
+   * @param string|Entity pathOrEntity ex. 'receiveorder_base' or ReceiveOrder
+   * @return Query
    */
   query (pathOrEntity) {
     const query = new Query(this.getConnection(), pathOrEntity)
@@ -43,50 +62,76 @@ class Nextengine {
   }
 
   /**
+   * Send {xxx}/create request
    *
+   * @param string|Entity pathOrEntity ex. 'receiveorder_base' or ReceiveOrder
+   * @param object params request body
+   * @return Promise
    */
   create (pathOrEntity, params) {
     this.query(pathOrEntity).request(params)
   }
 
   /**
+   * Send {xxx}/update request
    *
+   * @param string|Entity pathOrEntity ex. 'receiveorder_base' or ReceiveOrder
+   * @param object params request body
+   * @return Promise
    */
   update (pathOrEntity, params) {
     this.query(pathOrEntity).request(params)
   }
 
   /**
+   * Send {xxx}/update request
    *
+   * @param string|Entity pathOrEntity ex. 'receiveorder_base' or ReceiveOrder
+   * @param object params              request body
+   * @return Promise
    */
-  upload () {
+  upload (pathOrEntity, params) {
 
   }
 
   /**
+   * Poll upload queue until specified status
    *
+   * @param int queueId                       ID of upload queue
+   * @param int [state=UploadQueue.COMPLETED] ID of upload status
+   * @return Promise
    */
-  waitFor () {
-
+  waitFor (queueId, state) {
+    state = state || UploadQueue.COMPLETED
   }
 
   /**
+   * utility of upload + waitFor
    *
+   * @param string|Entity pathOrEntity        ex. 'receiveorder_base' or ReceiveOrder
+   * @param int [state=UploadQueue.COMPLETED] ID of upload status
+   * @return Promise
    */
-  uploadAndWaitFor () {
-
+  uploadAndWaitFor (pathOrEntity, params, state) {
+    state = state || UploadQueue.COMPLETED
   }
 
   /**
+   * Fetch access token and refresh token
    *
+   * @param string uid
+   * @param string state
+   * @return Promise
    */
   authorize (uid, state) {
     return this.request('/api_neauth', { uid: uid, state: state })
   }
 
   /**
-   * http://api.next-e.jp/param_uid_state.php
+   * Get authorize screen url
    *
+   * @see http://api.next-e.jp/param_uid_state.php
+   * @return string url for authorize
    */
   getAuthorizeURL () {
     const params = {
