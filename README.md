@@ -2,6 +2,8 @@
 [![CircleCI](https://circleci.com/gh/Leko/node-nextengine/tree/master.svg?style=svg)](https://circleci.com/gh/Leko/node-nextengine/tree/master)
 [![codecov](https://codecov.io/gh/Leko/node-nextengine/branch/master/graph/badge.svg)](https://codecov.io/gh/Leko/node-nextengine)
 
+[![NPM](https://nodei.co/npm/next-engine.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/next-engine/)
+
 A Nodejs wrapper for the Next Engine API [http://api.next-e.jp](http://api.next-e.jp)
 
 ## Installation
