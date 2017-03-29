@@ -172,7 +172,7 @@ class Nextengine {
       params.redirect_uri = this.redirectUri
     }
 
-    return `${Connection.HOST_PF}/users/sign_in/?${qs.stringify(params)}`
+    return `${this.connection.constructor.HOST_PF}/users/sign_in/?${qs.stringify(params)}`
   }
 }
 
