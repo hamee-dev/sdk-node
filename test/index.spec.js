@@ -83,15 +83,6 @@ describe('Nextengine', () => {
       assert.ok(!query.redirect_uri)
     })
 
-    it('must return url with query string client_secret', () => {
-      const ne = new Nextengine({ clientSecret: env.CLIENT_SECRET })
-      const url = ne.getAuthorizeURL()
-      const query = qs.parse(url.substr(url.indexOf('?') + 1))
-
-      assert.ok(!!query.client_secret)
-      assert.ok(!query.redirect_uri)
-    })
-
     it('must return url with query string redirect_uri if redirectUri present', () => {
       const ne = new Nextengine({ redirectUri: 'hoge' })
       const url = ne.getAuthorizeURL()

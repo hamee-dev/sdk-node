@@ -154,7 +154,12 @@ class Nextengine {
    * @return Promise
    */
   authorize (uid, state) {
-    return this.request('/api_neauth', { uid: uid, state: state })
+    return this.request('/api_neauth', {
+      uid: uid,
+      state: state,
+      client_id: this.clientId,
+      client_secret: this.clientSecret
+    })
   }
 
   /**
@@ -165,8 +170,7 @@ class Nextengine {
    */
   getAuthorizeURL () {
     const params = {
-      client_id: this.clientId,
-      client_secret: this.clientSecret
+      client_id: this.clientId
     }
     if (this.redirectUri) {
       params.redirect_uri = this.redirectUri
