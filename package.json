@@ -1,6 +1,6 @@
 {
   "name": "next-engine",
-  "version": "1.0.3",
+  "version": "1.1",
   "description": "Nextengine API for Nodejs",
   "main": "index.js",
   "scripts": {
@@ -9,18 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Leko/node-nextengine.git"
+    "url": "git+ssh://git@github.com/hamee-dev/sdk-node.git"
   },
   "keywords": [
     "api",
     "nextengine"
   ],
-  "author": "Leko <leko.noor@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Leko/node-nextengine/issues"
+    "url": "https://github.com/hamee-dev/sdk-node/issues"
   },
-  "homepage": "https://github.com/Leko/node-nextengine#readme",
+  "homepage": "https://github.com/hamee-dev/sdk-nodenode#readme",
   "dependencies": {
     "node-fetch": "^1.6.3",
     "object-path": "^0.11.2"
